@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Random Quote Machine</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body id="bodyApp" class="flex items-center justify-center min-h-screen transition-colors duration-500">
+  <div id="rootApp"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    const quotesList = [
+      { text: "Life is the art of drawing without an eraser.", author: "John W. Gardner" },
+      { text: "Happiness comes from your own actions.", author: "Dalai Lama" },
+      { text: "Success is a lousy teacher. It seduces smart people into thinking they can’t lose.", author: "Bill Gates" },
+      { text: "If you want to be happy, tie your life to a goal, not to people or things.", author: "Albert Einstein" },
+      { text: "Time is money.", author: "Benjamin Franklin" },
+      { text: "Stop waiting. Time will never be just right.", author: "Napoleon Hill" },
+      { text: "Successful people do what unsuccessful people are not willing to do.", author: "Jim Rohn" },
+      { text: "Be the change you wish to see in the world.", author: "Mahatma Gandhi" },
+      { text: "Do what you can, with what you have, where you are.", author: "Theodore Roosevelt" },
+      { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+      { text: "Your time is limited, so don’t waste it living someone else’s life.", author: "Steve Jobs" },
+      { text: "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.", author: "Roy T. Bennett" },
+      { text: "Doubt kills more dreams than failure ever will.", author: "Suzy Kassem" },
+      { text: "It always seems impossible until it’s done.", author: "Nelson Mandela" },
+      { text: "Success is not in what you have, but who you are.", author: "Bo Bennett" },
+      { text: "Failure is simply the opportunity to begin again, this time more intelligently.", author: "Henry Ford" },
+      { text: "Strength does not come from winning. Your struggles develop your strengths.", author: "Arnold Schwarzenegger" },
+      { text: "The secret of getting ahead is getting started.", author: "Mark Twain" },
+      { text: "Happiness is not by chance, but by choice.", author: "Jim Rohn" },
+      { text: "Everything you can imagine is real.", author: "Pablo Picasso" }
+    ];
+
+    const colorsList = [
+      "#16a085", "#27ae60", "#2c3e50", "#f39c12",
+      "#e74c3c", "#9b59b6", "#FB6964", "#342224",
+      "#472E32", "#BDBB99", "#77B1A9", "#73A857"
+    ];
+
+    function QuoteApp() {
+      const [quote, setQuote] = useState({ text: "", author: "" });
+      const [color, setColor] = useState("#16a085");
+
+      const randomQuote = () => quotesList[Math.floor(Math.random() * quotesList.length)];
+      const randomColor = () => colorsList[Math.floor(Math.random() * colorsList.length)];
+
+      const newQuote = () => {
+        setQuote(randomQuote());
+        setColor(randomColor());
+      };
+
+      useEffect(() => { newQuote(); }, []);
+      useEffect(() => {
+        document.getElementById("bodyApp").style.backgroundColor = color;
+      }, [color]);
+
+      return (
+        <div id="quote-box" 
+             className="bg-white p-6 rounded-2xl shadow-lg max-w-lg text-center transition-colors duration-500"
+             style={{ color }}>
+          <p id="text" className="text-xl font-semibold mb-4 transition-colors duration-500">
+            "{quote.text}"
+          </p>
+          <p id="author" className="text-gray-600 italic mb-6 transition-colors duration-500">
+            - {quote.author}
+          </p>
+          <div className="flex justify-between">
+            <button
+              id="new-quote"
+              onClick={newQuote}
+              className="px-4 py-2 rounded-lg text-white transition-colors duration-500"
+              style={{ backgroundColor: color }}
+            >
+              New Quote
+            </button>
+            <a
+              id="tweet-quote"
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`"${quote.text}" - ${quote.author}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold transition-colors duration-500"
+              style={{ color }}
+            >
+              Tweet
+            </a>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("rootApp")).render(<QuoteApp />);
+  </script>
+</body>
+</html>
