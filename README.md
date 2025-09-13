@@ -13,7 +13,7 @@ Proyek ini merupakan implementasi dari [FreeCodeCamp Frontend Libraries Project]
 ---
 
 ## 🚀 Demo
-👉 [Lihat Live Demo di GitHub Pages](https://username.github.io/random-quote-machine/)  
+👉 [Lihat Live Demo di GitHub Pages](https://ddekaee.github.io/quotesrandom/)  
 
 ---
 
@@ -32,7 +32,7 @@ Proyek ini merupakan implementasi dari [FreeCodeCamp Frontend Libraries Project]
 ## 📦 Cara Menjalankan
 1. Clone repo ini:
    ```bash
-   git clone https://github.com/username/random-quote-machine.git
+   git clone https://github.com/ddekaee/quotesrandom.git
 Buka file index.html di browser.
 
 Selesai ✅
